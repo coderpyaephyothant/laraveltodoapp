@@ -24,7 +24,7 @@ class HomeController extends Controller
             'title' => 'required',
             'description' => 'required',
         ]);
-        
+
         $data = new Post();
         $data->title = $request->title;
         $data->description = $request->description;
@@ -33,12 +33,25 @@ class HomeController extends Controller
         // return view('home');
     }
 
-    public function edit(){
-        return view('home');
+    public function edit($id){
+      $data=Post::findorFail($id);
+      // dd($data);
+        return view('edit',compact('data'));
     }
 
-    public function update(){
-        return view('home');
+    public function update(Request $request,$id){
+
+      $validated = $request->validate([
+          'title' => 'required',
+          'description' => 'required',
+      ]);
+      $data=Post::findorFail($id);
+      // dd($data);
+      $data->title = $request->title;
+      $data->description = $request->description;
+      $data->save();
+      // dd($data);
+        return redirect('/');
     }
 
     public function delete(){

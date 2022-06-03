@@ -17,8 +17,8 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/new', [HomeController::class, 'new']);
 Route::post('/store', [HomeController::class, 'store']);
-Route::get('/edit', [HomeController::class, 'edit']);
-Route::post('/update', [HomeController::class, 'update']);
+Route::get('/edit{id}', [HomeController::class, 'edit']);
+Route::post('/update{id}', [HomeController::class, 'update']);
 Route::post('/delete', [HomeController::class, 'delete']);
 
 
